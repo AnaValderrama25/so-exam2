@@ -4,8 +4,13 @@
 **Docente:** Daniel Barragán C.  
 **Tema:** Namespaces, CGroups, LXC  
 **Correo:** daniel.barragan at correo.icesi.edu.co  
+  
+  
 **Estudiante:** Ana Valderrama V.  
-**Código:** A0065868  
+**Código:** A00065868  
+**Correo:** ana_fernanda_25@hotmail.com  
+
+
 
 
 ### Objetivos

@@ -106,7 +106,15 @@ El segundo parcial del curso sistemas operativos trata sobre el manejo de namesp
   Luego, se termina forzosamente el servicio countHola, gracias al comando ***kill*** y el  ***PID*** del proceso, se puede observar que el proceso que continua ejecutándose sobrepasa el 75% ocupando más del 95% de CPU, se estima que si es necesario podría llegar a 100%:  
   ![][11]  
   
-5. Por medio de las evidencias obtenidas en los puntos anteriores y de fuentes de consulta en Internet, elabore las definiciones para los grupos de control CPUQuota y CPUShares, además concluya acerca de cuando es preferible usar un recurso de control sobre otro (20%)
+5. Por medio de las evidencias obtenidas en los puntos anteriores y de fuentes de consulta en Internet, elabore las definiciones para los grupos de control CPUQuota y CPUShares, además concluya acerca de cuando es preferible usar un recurso de control sobre otro (20%) 
+Se pueden agrupar los procesos mediante grupos de control dependiendo del tipo de recurso (CPU, Memory, IO) y las capacidades que este posea. 
+### CPUQuota  
+Asigna un porcentaje de tiempo de CPU a un proceso específico que va a ser ejecutado, toma el valor que este descrito en **[Service]** con el signo "%" como el límite máximo de tiempo que el proceso puede tener de CPU relativo al tiempo total disponible de una CPU. CPUQuota controla el atributo *cpu.max* en la jerarquía unificada del grupo de control.  
+
+### CPUShares  
+Es una opción que ya esta *deprecated*, en su reemplazo entro **CPUWeight**. **CPUShares** es un grupo de control de la CPU, viene por defecto con el valor 1024, y corresponde con el tiempo de CPU que se le puede asignar a un proceso. Si existen varios procesos ejecutándose al mismo tiempo, el porcentaje al que equivalga el valor que posee en **CPUShares** es lo que le dará en el tiempo de CPU. Por ejemplo, en el punto anterior el total de CPUShares entre los dos procesos era 10240, al ejecutarse los dos al tiempo, el countHola.sh que tenía un valor de 7680 le correspondería un 75% de tiempo de CPU como valor máximo, countAdios.sh tenía el 25% restante pues tenía un valor de 2560, es decir le correspondería el 25% de tiempo de CPU como máximo.  
+  
+Para concluir, CPUShares y CPUQuota son grupos de control que restringen el uso de un recurso (CPU) a un proceso específico. Cuál usar depende de la situación, por ejemplo CPUShares es útil cuando se tienen varios procesos y deben ser gestionados de forma eficiente, y existe alguno que merece prioritariamente más tiempo de CPU que otro, por eso se le asigna un peso, en caso de solo existir un proceso en ejecución éste podrá emplear el 100% de tiempo de CPU de ser necesario. Por otro lado, CPUQuota puede ser útil en un caso en el que un proceso emplea demasiado tiempo de CPU y agota el recurso, con CPUQuota se le asigna un límite que no podrá superar aun incluso si es el único proceso en ejecución. 
 6. El informe debe ser entregado en formato pdf a través del moodle y el informe en formato README.md debe ser subido a un repositorio de github. El repositorio de github debe ser un fork de https://github.com/ICESI-Training/so-exam2 y para la entrega deberá hacer un Pull Request (PR) respetando la estructura definida. El código fuente y la url de github deben incluirse en el informe (10%)  
 
 ### Referencias

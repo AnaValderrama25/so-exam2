@@ -118,7 +118,18 @@ Para concluir, CPUShares y CPUQuota son grupos de control que restringen el uso 
 
 
 ### Referencias
-https://github.com/ICESI/so-containers
+https://github.com/ICESI/so-containers  
+https://github.com/ICESI/so-processes  
+https://unix.stackexchange.com/questions/218074/how-to-know-number-of-cores-of-a-system-in-linux  
+https://www.freedesktop.org/software/systemd/man/systemd.resource-control.html  
+https://docs.docker.com/engine/admin/resource_constraints/#configure-the-default-cfs-scheduler  
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/resource_management_guide/sec-modifying_control_groups  
+https://cloud.google.com/compute/quotas  
+https://peteris.rocks/blog/can-you-kill-it/  
+https://github.com/systemd/systemd/issues/5820  
+
+
+
 
 [1]: images/Procesador1.PNG  
 [2]: images/Procesador2.PNG  

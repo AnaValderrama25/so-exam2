@@ -89,3 +89,12 @@ El segundo parcial del curso sistemas operativos trata sobre el manejo de namesp
 
 ### Referencias
 https://github.com/ICESI/so-containers
+
+[1]: images/Procesador1.PNG  
+[2]: images/Procesador2.PNG  
+[3]: images/Processes.PNG  
+[4]: images/AuthenticationStatus.PNG  
+[5]: images/StartProcesses.PNG  
+[6]: images/ActiveProcesses.PNG  
+[7]: images/CPUusage.PNG  
+[8]: images/KillCountAdios.PNG  

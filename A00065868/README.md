@@ -8,8 +8,8 @@
   
 **Estudiante:** Ana Valderrama V.  
 **Código:** A00065868  
-**Correo:** ana_fernanda_25@hotmail.com  
-
+**Correo:** ana_fernanda_25@hotmail.com   
+**GitUrl:** https://github.com/AnaValderrama25/so-exam2/
 
 
 
@@ -84,6 +84,28 @@ El segundo parcial del curso sistemas operativos trata sobre el manejo de namesp
  * Se deben ejecutar dos procesos
  * Uno de los procesos tendrá el 25% de la CPU mientras que el otro tendrá el 75% de la CPU
  * Cuando uno de los procesos se cancela, el que continua ejecutándose debe poder llegar al 100% de la CPU
+ 
+ Como se esta empleando la misma máquina virtual que en el punto anterior, como recurso solo se tiene un procesador en la CPU. Se reutilizaron los procesos creados también en el punto anterior, pero en el archivo en el que se convirtieron en servicios en **/etc/systemd/system**, en lugar de tener la restriccón de ***CPUQuota*** se tiene la restricción ***CPUShares***, para el proceso countHola se asigna:  
+  ```  
+  CPUShares = 7680  
+  ```  
+  Y para el proceso countAdios, se asigna:  
+  ```  
+  CPUShares = 2560  
+  ```  
+  ![][9]
+  Según el ejemplo en la guía de systemd de so-processes, el total de procesos sumaba 10240, y para asignar el peso multiplicaba ese numero por el porcnetaje deseado, así *10240x0,75=7680* asigna un 75% al proceso ***countHola***, y *10240-7680=2560* asigna el 25% restante a el proceso ***countAdios***.  
+  Desde el usuario root se activan los servicios digitando los comandos:  
+  ```  
+  #systemctl start countHola.service   
+  #systemctl start countAdios.service   
+  
+  ```  
+  Con el comando top se puede observar que uno de los procesos ocupa casi el 75% y el otro el 25% efectivamente:  
+  ![][10]  
+  Luego, se termina forzosamente el servicio countHola, gracias al comando ***kill*** y el  ***PID*** del proceso, se puede observar que el proceso que continua ejecutándose sobrepasa el 75% ocupando más del 95% de CPU, se estima que si es necesario podría llegar a 100%:  
+  ![][11]  
+  
 5. Por medio de las evidencias obtenidas en los puntos anteriores y de fuentes de consulta en Internet, elabore las definiciones para los grupos de control CPUQuota y CPUShares, además concluya acerca de cuando es preferible usar un recurso de control sobre otro (20%)
 6. El informe debe ser entregado en formato pdf a través del moodle y el informe en formato README.md debe ser subido a un repositorio de github. El repositorio de github debe ser un fork de https://github.com/ICESI-Training/so-exam2 y para la entrega deberá hacer un Pull Request (PR) respetando la estructura definida. El código fuente y la url de github deben incluirse en el informe (10%)  
 
@@ -98,3 +120,6 @@ https://github.com/ICESI/so-containers
 [6]: images/ActiveProcesses.PNG  
 [7]: images/CPUusage.PNG  
 [8]: images/KillCountAdios.PNG  
+[9]: images/CPUShares.PNG  
+[10]: images/CPUShares2.PNG  
+[11]: images/CPUShares3.PNG  
